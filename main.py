@@ -9,14 +9,13 @@ engine = pyttsx3.init()
 # engine.setProperty('voice', voices[13].id)
 
 def speak(text):
-  print(f'[JARVIS]: {text}')
+  print(f'[JARVIS]: {{text}}')
   engine.say(text)
   engine.runAndWait()
 
 def wish_me():
   hour = int(datetime.datetime.now().hour)
   greeting = ''
-
   if hour>=0 and hour<12:
     greeting = 'Good morning!'
   elif hour>=12 and hour<18:
@@ -24,7 +23,7 @@ def wish_me():
   else:
     greeting = 'Good evening!'
 
-  speak(f'{greeting} I am Jarvis. How may I help you today?')
+  speak(f'{{greeting}} I am Jarvis. How may I help you today?')
 
 def takeCommand():
   #It takes microphone input from the user and returns string output
@@ -37,7 +36,7 @@ def takeCommand():
   try:
     print("Recognizing...")    
     query = r.recognize_google(audio, language='en-in')
-    print(f"[Me]: {query}")
+    print(f"[Me]: {{query}}")
 
   except Exception as e:
     # print(e)    
@@ -62,7 +61,7 @@ while True:
     query = query.replace("search", "")
     query = query.replace("for", "")
     results = wikipedia.summary(query, sentences=1)
-    speak(f'According to Wikipedia, {results}')
+    speak(f'According to Wikipedia, {{results}}')
 
   elif 'open youtube' in query:
     speak('Opening Youtube')
